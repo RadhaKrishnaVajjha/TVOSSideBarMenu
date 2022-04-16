@@ -20,6 +20,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var mainCategories = [String]()
     var mainImages = [String]()
     var currentSelectedController: UIViewController? = nil
+    var selectedRow: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +56,14 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private func loadLeftMenu(width: CGFloat) {
         self.sideMenuWidth.constant = width
-        //if isSideMenuExpanded() {
-            //tableView.reloadData()
-        //}
+        let indexpath = IndexPath(row: selectedRow, section: 0)
+        let prevCell = tableView.cellForRow(at: indexpath) as! LeftMenuTableViewCell
+        prevCell.lblSeparator.isHidden = false
+        if isSideMenuExpanded() {
+            prevCell.lblSeparator.isHidden = true
+        }
+        
     }
-    
-    
     
     func showWatchLiveScreen(_ watchLiveVC : LiveViewController)-> Void {
         debugPrint("TVDashboard Function: \(#function), line: \(#line)")
@@ -175,11 +178,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.lblHeader?.text = "\( mainCategories[indexPath.row] )"
         cell.imgLeft.image = UIImage(named: "\(mainImages[indexPath.row])")?.withRenderingMode(.alwaysTemplate)
         cell.imgLeft.tintColor = UIColor.white
+        cell.lblSeparator.isHidden = true
         if isSideMenuExpanded() {
             cell.lblHeader.isHidden = false
         } else {
             cell.lblHeader.isHidden = true
         }
+        cell.focusStyle = .custom
         return cell
     }
     
@@ -191,7 +196,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print (indexPath.item)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //["Search","Home","Watch Live","Listen","Shows","Topics", "Settings"]
         let selectedValue = mainCategories[indexPath.row]
         switch selectedValue {
         case "Search":
@@ -224,14 +228,24 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let prevIndexPath = context.previouslyFocusedIndexPath {
             let prevCell = tableView.cellForRow(at: prevIndexPath) as! LeftMenuTableViewCell
+            context.previouslyFocusedView?.backgroundColor = UIColor.clear
             prevCell.lblHeader.textColor = UIColor.white
             prevCell.imgLeft.tintColor = UIColor.white
+            prevCell.lblSeparator.isHidden = true
+            
         }
         
         if let nextIndexPath = context.nextFocusedIndexPath {
             let nextCell = tableView.cellForRow(at: nextIndexPath) as! LeftMenuTableViewCell
-            nextCell.lblHeader.textColor = UIColor.black
-            nextCell.imgLeft.tintColor = UIColor.black
+            context.nextFocusedView?.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 253.0/255.0, alpha: 1)
+            nextCell.lblHeader.textColor = UIColor.white
+            nextCell.imgLeft.tintColor = UIColor.white
+            selectedRow = nextIndexPath.row
+            if isSideMenuExpanded() {
+                nextCell.lblSeparator.isHidden = true
+            } else {
+                nextCell.lblSeparator.isHidden = false
+            }
         }
     }
 }

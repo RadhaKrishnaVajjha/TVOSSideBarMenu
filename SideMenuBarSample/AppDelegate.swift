@@ -14,23 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        let window = UIWindow(frame: UIScreen.main.bounds)
-//
-//        let sideNavigationController = SideNavigationController(mainViewController: UINavigationController(rootViewController: ViewController()))
-//        sideNavigationController.leftSide(viewController: LeftViewController(), options: .init(
-//            widthPercent: 0.3,
-//            overlayOpacity: 0.8,
-//            shadowColor: .gray,
-//            panningEnabled: true,
-//            scale: 0.6,
-//            position: .front))
-//        sideNavigationController.rightSide(viewController: RightViewController())
-//
-//        window.rootViewController = sideNavigationController
-//
-//        self.window = window
-//        window.makeKeyAndVisible()
         return true
     }
 

@@ -17,14 +17,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="u48-9m-2rh">
-                        <rect key="frame" x="12" y="10.5" width="60" height="57.5"/>
+                        <rect key="frame" x="47" y="10.5" width="60" height="57.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="1Wf-r1-3b4"/>
                             <constraint firstAttribute="width" constant="60" id="MnN-5X-1Hl"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pg3-hm-Qv2">
-                        <rect key="frame" x="91" y="15" width="92" height="46"/>
+                        <rect key="frame" x="170" y="15" width="92" height="46"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="46" id="WVt-el-i8v"/>
                         </constraints>
@@ -32,20 +32,35 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2A-HT-Evc">
+                        <rect key="frame" x="165" y="0.0" width="3" height="78"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="3" id="Mvp-Gf-A5U"/>
+                            <constraint firstAttribute="height" constant="78" id="cyG-t2-S5l"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="u48-9m-2rh" firstAttribute="leading" secondItem="S0Q-fX-qc8" secondAttribute="leading" constant="12" id="R7z-2N-XBj"/>
+                    <constraint firstItem="M2A-HT-Evc" firstAttribute="top" secondItem="S0Q-fX-qc8" secondAttribute="top" id="D3m-vm-rbf"/>
+                    <constraint firstAttribute="bottom" secondItem="M2A-HT-Evc" secondAttribute="bottom" id="J5x-Zx-fGU"/>
+                    <constraint firstItem="u48-9m-2rh" firstAttribute="leading" secondItem="S0Q-fX-qc8" secondAttribute="leading" constant="47" id="R7z-2N-XBj"/>
                     <constraint firstItem="pg3-hm-Qv2" firstAttribute="top" secondItem="S0Q-fX-qc8" secondAttribute="top" constant="15" id="Scv-9y-YFd"/>
+                    <constraint firstItem="M2A-HT-Evc" firstAttribute="leading" secondItem="u48-9m-2rh" secondAttribute="trailing" constant="58" id="WhM-Ez-SaR"/>
                     <constraint firstItem="u48-9m-2rh" firstAttribute="top" secondItem="S0Q-fX-qc8" secondAttribute="top" constant="9" id="Yr2-fn-22I"/>
                     <constraint firstAttribute="bottom" secondItem="pg3-hm-Qv2" secondAttribute="bottom" constant="17" id="f4e-XI-LRz"/>
                     <constraint firstAttribute="bottom" secondItem="u48-9m-2rh" secondAttribute="bottom" constant="9" id="j73-X9-C3w"/>
-                    <constraint firstItem="pg3-hm-Qv2" firstAttribute="leading" secondItem="u48-9m-2rh" secondAttribute="trailing" constant="19" id="uxP-gO-mcc"/>
+                    <constraint firstItem="pg3-hm-Qv2" firstAttribute="leading" secondItem="u48-9m-2rh" secondAttribute="trailing" constant="63" id="uxP-gO-mcc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="1ks-Xo-ai1"/>
             <connections>
                 <outlet property="imgLeft" destination="u48-9m-2rh" id="4co-Qs-8ny"/>
                 <outlet property="lblHeader" destination="pg3-hm-Qv2" id="5ak-gy-pIr"/>
+                <outlet property="lblSeparator" destination="M2A-HT-Evc" id="Rdb-MU-ewS"/>
             </connections>
             <point key="canvasLocation" x="-470.5" y="74"/>
         </tableViewCell>
