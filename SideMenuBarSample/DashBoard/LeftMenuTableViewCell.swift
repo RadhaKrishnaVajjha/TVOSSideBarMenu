@@ -12,6 +12,7 @@ class LeftMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var imgLeft: UIImageView!
     @IBOutlet weak var lblHeader: UILabel!
     
+    @IBOutlet weak var lblSeparator: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

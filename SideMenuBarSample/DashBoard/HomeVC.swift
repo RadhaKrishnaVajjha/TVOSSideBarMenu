@@ -46,23 +46,37 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @objc func leftSwiped(_ gesture:UIGestureRecognizer) {
         debugPrint("TVDashboard Function: \(#function), line: \(#line)")
-        self.loadLeftMenu(width: self.minLeftMenuWidth)
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .layoutSubviews) {
+                self.sideMenuWidth.constant = self.minLeftMenuWidth
+                self.view.layoutIfNeeded()
+            } completion: { isSuccess in
+                let indexpath = IndexPath(row: self.selectedRow, section: 0)
+                let prevCell = self.tableView.cellForRow(at: indexpath) as! LeftMenuTableViewCell
+                prevCell.lblSeparator.isHidden = false
+                if self.isSideMenuExpanded() {
+                    prevCell.lblSeparator.isHidden = true
+                }
+            }
+        }
     }
     
     @objc func rightSwiped(_ gesture:UIGestureRecognizer) {
         debugPrint("TVDashboard Function: \(#function), line: \(#line)")
-        self.loadLeftMenu(width: self.maxLeftMenuWidth)
-    }
-    
-    private func loadLeftMenu(width: CGFloat) {
-        self.sideMenuWidth.constant = width
-        let indexpath = IndexPath(row: selectedRow, section: 0)
-        let prevCell = tableView.cellForRow(at: indexpath) as! LeftMenuTableViewCell
-        prevCell.lblSeparator.isHidden = false
-        if isSideMenuExpanded() {
-            prevCell.lblSeparator.isHidden = true
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .layoutSubviews) {
+                self.sideMenuWidth.constant = self.maxLeftMenuWidth
+                let indexpath = IndexPath(row: self.selectedRow, section: 0)
+                let prevCell = self.tableView.cellForRow(at: indexpath) as! LeftMenuTableViewCell
+                prevCell.lblSeparator.isHidden = false
+                if self.isSideMenuExpanded() {
+                    prevCell.lblSeparator.isHidden = true
+                }
+                self.view.layoutIfNeeded()
+            } completion: { isSuccess in
+                
+            }
         }
-        
     }
     
     func showWatchLiveScreen(_ watchLiveVC : LiveViewController)-> Void {
@@ -145,7 +159,19 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @objc func downSwiped(_ gesture:UIGestureRecognizer) {
         debugPrint("TVDashboard Function: \(#function), line: \(#line)")
-        self.sideMenuWidth.constant = self.minLeftMenuWidth
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .layoutSubviews) {
+                self.sideMenuWidth.constant = self.minLeftMenuWidth
+                self.view.layoutIfNeeded()
+            } completion: { isSuccess in
+                let indexpath = IndexPath(row: self.selectedRow, section: 0)
+                let prevCell = self.tableView.cellForRow(at: indexpath) as! LeftMenuTableViewCell
+                prevCell.lblSeparator.isHidden = false
+                if self.isSideMenuExpanded() {
+                    prevCell.lblSeparator.isHidden = true
+                }
+            }
+        }
     }
     
     func isSideMenuExpanded() -> Bool {
